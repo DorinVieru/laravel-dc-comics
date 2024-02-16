@@ -145,6 +145,60 @@ h6 {
     }
 }
 
+.section-comic-info {
+    h2 {
+        font-weight: 800;
+        color: #145493;
+    }
+
+    p {
+        padding-top: 11px;
+    }
+}
+ .section-talent-specs{
+    h3 {
+        font-weight: 800;
+        color: #145493;
+    }
+    
+    p{
+        color: #3996f4;
+        margin: 0;
+    }
+
+    hr{
+        color: #bbbbbb;
+    }
+
+    table {
+        font-size: 14px;
+        width: 100%;
+    
+        .td-talent {
+            color: #145493;
+            font-weight: 700;
+            padding: 0 20px 0px 0;
+            width: 100px;
+        }
+
+        .td-specs {
+            color: #145493;
+            font-weight: 700;
+            padding: 0 20px 5px 0;
+            width: 140px;
+        }
+    
+        tr {
+            border-bottom: 1px solid #e8e8e8;
+    
+            td {
+                padding: 10px 10px 10px 40px;
+            }
+        }
+    }
+ }
+
+
 
 /////////// 
 /// FOOTER

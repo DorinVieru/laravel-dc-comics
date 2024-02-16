@@ -13,7 +13,7 @@
                             <a class="nav-link" href="">CHARACTERS</a>
                         </li>
                         <li class="nav-item px-3">
-                            <a class="nav-link {{ Route::currentRouteName() === 'comics' ? 'active' : ''}}" href="{{ route('comics') }}">COMICS</a>
+                            <a class="nav-link {{ Route::currentRouteName() === 'comics' ? 'active' : ''}}" href="{{ route('comics.index') }}">COMICS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">MOVIES</a>
