@@ -9,6 +9,15 @@
     {{-- COMICS SECTION --}}
     <div class="container py-5">
         <div class="row align-items-center">
+            <div class="col-12 text-center text-white">
+                <h1 class="fw-semibold">I Fumetti oggi disponibili</h1>
+            </div>
+            <div class="col-12 d-flex justify-content-center pt-3">
+                <div class="col-7 bg-white d-flex justify-content-center align-items-center py-2 rounded-2">
+                    <h5 class="pe-4 pt-1">Vuoi aggiungere un nuovo fumetto?</h5>
+                    <a href="{{ route('comics.create') }}"><button class="btn btn-primary">Aggiungio nuovo fumetto</button></a>
+                </div>
+            </div>
             @foreach ($comics as $comic)
                     <div class="col-2 card_container">
                         {{-- COMIC CARD --}}
