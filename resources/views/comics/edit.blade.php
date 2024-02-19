@@ -13,36 +13,45 @@
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <div class="col-8 bg-white p-3 rounded-3">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('comics.update', $comic['id']) }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="mb-3">
-                            <input type="text" name="title" class="form-control" id="title" placeholder="Titolo" required value="{{ $comic->title }}">
+                            <input type="text" name="title" class="form-control" id="title" placeholder="Titolo" required value="{{ old('title') ?? $comic->title }}">
                         </div>
                          <div class="mb-3">
-                            <textarea name="description" class="form-control" id="description" rows="6" placeholder="Descrizione" required>{{ $comic->description }}</textarea>
+                            <textarea name="description" class="form-control" id="description" rows="6" placeholder="Descrizione" required>{{ old('description') ?? $comic->description }}</textarea>
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="thumb" class="form-control" id="thumb" placeholder="Link immagine" value="{{ $comic->thumb }}">
+                            <input type="text" name="thumb" class="form-control" id="thumb" placeholder="Link immagine" value="{{ old('thumb') ?? $comic->thumb }}">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="price" class="form-control" id="price" placeholder="Prezzo" required value="{{ $comic->price }}">
+                            <input type="text" name="price" class="form-control" id="price" placeholder="Prezzo" required value="{{ old('price') ?? $comic->price }}">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="series" class="form-control" id="series" placeholder="Serie" required value="{{ $comic->series }}">
+                            <input type="text" name="series" class="form-control" id="series" placeholder="Serie" required value="{{ old('series') ?? $comic->series }}">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="sale_date" class="form-control" id="sale_date" placeholder="Data di vendita" required value="{{ $comic->sale_date }}">
+                            <input type="text" name="sale_date" class="form-control" id="sale_date" placeholder="Data di vendita" required value="{{ old('sale_date') ?? $comic->sale_date }}">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="type" class="form-control" id="type" placeholder="Tipo" required value="{{ $comic->type }}">
+                            <input type="text" name="type" class="form-control" id="type" placeholder="Tipo" required value="{{ old('type') ?? $comic->type }}">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="artists" class="form-control" id="artists" placeholder="Artista/i" required value="{{ $comic->artists }}">
+                            <input type="text" name="artists" class="form-control" id="artists" placeholder="Artista/i" required value="{{ old('artists') ?? $comic->artists }}">
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="writers" class="form-control" id="writers" placeholder="Scrittore/i" required value="{{ $comic->writers }}">
+                            <input type="text" name="writers" class="form-control" id="writers" placeholder="Scrittore/i" required value="{{ old('writers') ?? $comic->writers }}">
                         </div>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary px-5 fs-4">Salva subito</button>

@@ -37,25 +37,37 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        // VERIFICO CHE I DATI PASSATI NEL FORM RISPETTINO LE SEGUENTI REGOLE
+        $request->validate([
+            'title' => 'required|max:150|min:5',
+            'description' => 'required',
+            'price' => 'required|max:20|min:2',
+            'series' => 'required|max:50',
+            'sale_date' => 'required',
+            'type' => 'required|max:30|min:2',
+            'artists' => 'required|min:5',
+            'writers' => 'required|min:5',
+        ]);
+        
         // RECUPERO I DATI INVIATI DAL FORM
         $form_comics = $request->all();
 
         // CREO LA NUOVA ISTANZA PER COMICS PER SALVARLO NEL DATABASE
-        $NewComic = new Comic();
-        $NewComic->title = $form_comics['title'];
-        $NewComic->description = $form_comics['description'];
-        $NewComic->thumb = $form_comics['thumb'];
-        $NewComic->price = $form_comics['price'];
-        $NewComic->series = $form_comics['series'];
-        $NewComic->sale_date = $form_comics['sale_date'];
-        $NewComic->type = $form_comics['type'];
-        $NewComic->artists = $form_comics['artists'];
-        $NewComic->writers = $form_comics['writers'];
+        $comic = new Comic();
+        $comic->title = $form_comics['title'];
+        $comic->description = $form_comics['description'];
+        $comic->thumb = $form_comics['thumb'];
+        $comic->price = $form_comics['price'];
+        $comic->series = $form_comics['series'];
+        $comic->sale_date = $form_comics['sale_date'];
+        $comic->type = $form_comics['type'];
+        $comic->artists = $form_comics['artists'];
+        $comic->writers = $form_comics['writers'];
 
-        $NewComic->save();
+        $comic->save();
 
         // FACCIO IL REDIRECT ALLA PAGINA SHOW 
-        return redirect()->route('comics.show', ['comic' => $NewComic]);
+        return redirect()->route('comics.show', ['comic' => $comic]);
     }
 
     /**
@@ -92,6 +104,18 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // VERIFICO CHE I DATI PASSATI NEL FORM RISPETTINO LE SEGUENTI REGOLE
+        $request->validate([
+            'title' => 'required|max:150|min:5',
+            'description' => 'required',
+            'price' => 'required|max:20|min:2',
+            'series' => 'required|max:50',
+            'sale_date' => 'required',
+            'type' => 'required|max:30|min:2',
+            'artists' => 'required|min:5',
+            'writers' => 'required|min:5',
+        ]);
+        
         // RECUPERO I DATI INVIATI DAL FORM
         $form_comics = $request->all();
 
