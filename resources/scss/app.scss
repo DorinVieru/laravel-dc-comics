@@ -117,10 +117,16 @@ h6 {
         margin-right: 10px;
     }
 
+    h2 {
+        color: white;
+        font-size: 17px;
+        margin-right: 10px;
+    }
+
     .img-container {
         img {
             width: 190px;
-            height: 290px;
+            height: 300px;
             object-fit: cover;
             object-position: top;
             border-radius: 10px;
@@ -153,6 +159,10 @@ h6 {
 
     p {
         padding-top: 11px;
+    }
+
+    a{
+        text-decoration: none;
     }
 }
  .section-talent-specs{

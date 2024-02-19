@@ -3,7 +3,11 @@
 @section('content')
     {{-- JUMBOTRON --}}
     <div class="container-fluid jumbo">
-        <img class="img-position" src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
+        @if ($comic['thumb'] == null)
+            <img class="img-position" src="{{ Vite::asset('resources/img/adv.jpg') }}" alt="{{ $comic['title'] }}">
+        @else
+            <img class="img-position" src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
+        @endif
     </div>
 
     {{-- SECTION BG-BLUE JUMBO --}}
@@ -20,12 +24,15 @@
                         <p>Type: {{ $comic['type'] }}</p>
                     </div>
                     <p>{{ $comic['description'] }}</p>
+                    <a href="{{ route('comics.edit', ['comic' => $comic['id']]) }}">
+                        <button type="button" class="mt-2 btn btn-warning">Edit Comic Now</button>
+                    </a>
                 </div>
                 <div class="col-3 text-end">
                     <p class="mb-1">Advertisement</p>
                     <img src="{{ Vite::asset('resources/img/adv.jpg') }}" alt="">
                 </div>
-                {{-- GO BACK BUTTON --}}
+                {{-- GO BACK & EDIT BUTTON --}}
                 <div class="col-12 text-center my-5">
                     <a href="/comics">
                         <button type="button" class="btn btn-primary">Go Back</button>

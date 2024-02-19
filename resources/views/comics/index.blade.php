@@ -24,7 +24,11 @@
                         <a href="{{ route('comics.show', ['comic' => $comic['id']]) }}">
                             <div>
                                 <div class="img-container p-relative">
-                                    <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
+                                    @if ($comic['thumb'] == null)
+                                        <img src="{{ Vite::asset('resources/img/adv.jpg') }}" alt="{{ $comic['title'] }}">
+                                    @else
+                                        <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
+                                    @endif
                                     <span class="price-tag">{{ $comic['price'] }}</span>
                                 </div>
                                 <div>
