@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -37,20 +38,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        // VERIFICO CHE I DATI PASSATI NEL FORM RISPETTINO LE SEGUENTI REGOLE
-        $request->validate([
-            'title' => 'required|max:150|min:5',
-            'description' => 'required',
-            'price' => 'required|max:20|min:2',
-            'series' => 'required|max:50',
-            'sale_date' => 'required',
-            'type' => 'required|max:30|min:2',
-            'artists' => 'required|min:5',
-            'writers' => 'required|min:5',
-        ]);
-        
         // RECUPERO I DATI INVIATI DAL FORM
-        $form_comics = $request->all();
+        $form_comics = $this->validation($request->all());
 
         // CREO LA NUOVA ISTANZA PER COMICS PER SALVARLO NEL DATABASE
         $comic = new Comic();
@@ -104,20 +93,8 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // VERIFICO CHE I DATI PASSATI NEL FORM RISPETTINO LE SEGUENTI REGOLE
-        $request->validate([
-            'title' => 'required|max:150|min:5',
-            'description' => 'required',
-            'price' => 'required|max:20|min:2',
-            'series' => 'required|max:50',
-            'sale_date' => 'required',
-            'type' => 'required|max:30|min:2',
-            'artists' => 'required|min:5',
-            'writers' => 'required|min:5',
-        ]);
-        
         // RECUPERO I DATI INVIATI DAL FORM
-        $form_comics = $request->all();
+        $form_comics = $this->validation($request->all());
 
         // RECUPERO IL COMIC CHE VOGLIO MODIFICARE
         $comic = Comic::find($id);
@@ -154,5 +131,44 @@ class ComicController extends Controller
         $comic->delete();
 
         return redirect()->route('comics.index');
+    }
+
+    private function validation($data)
+    {
+        $validator = Validator::make(
+            $data,
+            [
+                'title' => 'required|max:150|min:5',
+                'description' => 'required|min:2',
+                'price' => 'required|max:20|min:2',
+                'series' => 'required|max:50',
+                'sale_date' => 'required',
+                'type' => 'required|max:30|min:2',
+                'artists' => 'required|min:5',
+                'writers' => 'required|min:5',
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio.',
+                'title.max' => 'Il titolo deve contere al massimo 150 caratteri.',
+                'title.min' => 'Il titolo deve contere almeno 5 caratteri.',
+                'description.required' => 'La descrizione è obbligatoria.',
+                'description.min' => 'La descrizione deve contenere almeno 2 caratteri.',
+                'price.required' => 'Il prezzo è obbligatorio.',
+                'price.max' => 'Il prezzo deve contere al massimo 20 caratteri.',
+                'price.min' => 'Il prezzo deve contere almeno 2 caratteri.',
+                'series.required' => 'Il nome della serie è obbligatorio.',
+                'series.max' => 'Il nome della serie deve contere al massimo 50 caratteri.',
+                'sale_data.required' => 'La data di vendita è obbligatoria.',
+                'type.required' => 'Il tipo di comic è obbligatorio.',
+                'type.max' => 'Il tipo di comic deve contere al massimo 30 caratteri.',
+                'type.min' => 'Il tipo di comic deve contere almeno 2 caratteri.',
+                'artists.required' => "Il nome dell'artista/i è obbligatorio.",
+                'artists.min' => "Il nome dell'artista/i deve contere almeno 2 caratteri.",
+                'writers.required' => "Il nome dello scrittore/i è obbligatorio.",
+                'writers.min' => "Il nome dello scrittore/i deve contere almeno 2 caratteri.",
+            ]
+        )->validate();
+
+        return $validator;
     }
 }

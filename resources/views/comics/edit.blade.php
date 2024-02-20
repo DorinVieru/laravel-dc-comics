@@ -27,31 +27,58 @@
                         @method('PUT')
 
                         <div class="mb-3">
-                            <input type="text" name="title" class="form-control" id="title" placeholder="Titolo" required value="{{ old('title') ?? $comic->title }}">
+                            <input type="text" name="title" class="form-control @error ('title') is-invalid @enderror" id="title" placeholder="Titolo" required value="{{ old('title') ?? $comic->title }}">
+                            @error ('title')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                          <div class="mb-3">
-                            <textarea name="description" class="form-control" id="description" rows="6" placeholder="Descrizione" required>{{ old('description') ?? $comic->description }}</textarea>
+                            <textarea name="description" class="form-control @error ('description') is-invalid @enderror" id="description" rows="6" placeholder="Descrizione" required>{{ old('description') ?? $comic->description }}</textarea>
+                            @error ('description')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="thumb" class="form-control" id="thumb" placeholder="Link immagine" value="{{ old('thumb') ?? $comic->thumb }}">
+                            <input type="text" name="thumb" class="form-control @error ('thumb') is-invalid @enderror" id="thumb" placeholder="Link immagine" value="{{ old('thumb') ?? $comic->thumb }}">
+                            @error ('thumb')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="price" class="form-control" id="price" placeholder="Prezzo" required value="{{ old('price') ?? $comic->price }}">
+                            <input type="text" name="price" class="form-control @error ('price') is-invalid @enderror" id="price" placeholder="Prezzo" required value="{{ old('price') ?? $comic->price }}">
+                            @error ('price')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="series" class="form-control" id="series" placeholder="Serie" required value="{{ old('series') ?? $comic->series }}">
+                            <input type="text" name="series" class="form-control @error ('series') is-invalid @enderror" id="series" placeholder="Serie" required value="{{ old('series') ?? $comic->series }}">
+                            @error ('series')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="sale_date" class="form-control" id="sale_date" placeholder="Data di vendita" required value="{{ old('sale_date') ?? $comic->sale_date }}">
+                            <input type="text" name="sale_date" class="form-control @error ('sale_date') is-invalid @enderror" id="sale_date" placeholder="Data di vendita" required value="{{ old('sale_date') ?? $comic->sale_date }}">
+                            @error ('sale_date')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="type" class="form-control" id="type" placeholder="Tipo" required value="{{ old('type') ?? $comic->type }}">
+                            <input type="text" name="type" class="form-control @error ('type') is-invalid @enderror" id="type" placeholder="Tipo" required value="{{ old('type') ?? $comic->type }}">
+                            @error ('type')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="artists" class="form-control" id="artists" placeholder="Artista/i" required value="{{ old('artists') ?? $comic->artists }}">
+                            <input type="text" name="artists" class="form-control @error ('artists') is-invalid @enderror" id="artists" placeholder="Artista/i" required value="{{ old('artists') ?? $comic->artists }}">
+                            @error ('artists')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="writers" class="form-control" id="writers" placeholder="Scrittore/i" required value="{{ old('writers') ?? $comic->writers }}">
+                            <input type="text" name="writers" class="form-control @error ('writers') is-invalid @enderror" id="writers" placeholder="Scrittore/i" required value="{{ old('writers') ?? $comic->writers }}">
+                            @error ('writers')
+                                <div class="text-danger fw-semibold">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary px-5 fs-4">Salva subito</button>
