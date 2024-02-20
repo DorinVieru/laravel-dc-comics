@@ -147,6 +147,12 @@ class ComicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //RECUPERARE IL COMIC CANCELLATO
+        $comic = Comic::find($id);
+
+        // CANCELLO IL COMIC CON IL METODO
+        $comic->delete();
+
+        return redirect()->route('comics.index');
     }
 }

@@ -24,15 +24,24 @@
                         <p>Type: {{ $comic['type'] }}</p>
                     </div>
                     <p>{{ $comic['description'] }}</p>
-                    <a href="{{ route('comics.edit', ['comic' => $comic['id']]) }}">
-                        <button type="button" class="mt-2 btn btn-warning">Edit Comic Now</button>
-                    </a>
+                    <div class="d-flex">
+                        {{-- EDIT BUTTON --}}
+                        <a href="{{ route('comics.edit', ['comic' => $comic['id']]) }}">
+                            <button type="button" class="mt-2 btn btn-warning">Edit Comic Now</button>
+                        </a>
+                        {{-- DELETE BUTTON --}}
+                        <form action="{{  route('comics.destroy', ['comic' => $comic['id']]) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler cancellare questo Comic?')">
+                        @csrf
+                        @method('DELETE')
+                            <button type="sumbit" class="mt-2 ms-3 btn btn-danger">Delete Comic Now</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-3 text-end">
                     <p class="mb-1">Advertisement</p>
                     <img src="{{ Vite::asset('resources/img/adv.jpg') }}" alt="">
                 </div>
-                {{-- GO BACK & EDIT BUTTON --}}
+                {{-- GO BACK BUTTON --}}
                 <div class="col-12 text-center my-5">
                     <a href="/comics">
                         <button type="button" class="btn btn-primary">Go Back</button>
