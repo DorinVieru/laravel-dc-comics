@@ -30,7 +30,7 @@
                             <button type="button" class="mt-2 btn btn-warning">Edit Comic Now</button>
                         </a>
                         {{-- DELETE BUTTON --}}
-                        <form action="{{  route('comics.destroy', ['comic' => $comic['id']]) }}" method="POST">
+                        <form action="{{  route('comics.destroy', ['comic' => $comic['id']]) }}" method="POST" onsubmit = "return confirm('Sei sicuro di voler cancellare questo Comic?')">
                         @csrf
                         @method('DELETE')
                             <button type="sumbit" class="mt-2 ms-3 btn btn-danger">Delete Comic Now</button>
